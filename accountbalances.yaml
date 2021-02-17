@@ -5,8 +5,8 @@ externalDocs:
   description: API Docs
   url: https://nab.com.au
 info:
-  version: v1.1
-  title: "Account Balances v1.1"
+  version: v1.5
+  title: "Account Balances v1.5"
   description: Retrieve account balances for a single account or a bulk balance for multiple accounts owned by an authorised customer.
   contact:
     name: "Nab OB API Team"
