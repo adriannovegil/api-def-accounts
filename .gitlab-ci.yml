@@ -5,7 +5,7 @@ stages:
 - validate
 - doc
 
-validate.swagger:
+prepare.swagger:
   stage: prepare
   script:
     - df -h
@@ -19,6 +19,14 @@ validate.swagger:
     - validate . ./yaml
 
 validate.openapi:
+  stage: validate
+  image: jamescooke/openapi-validator
+  before_script:
+    - openapi-validator -v
+  script:
+    - openapi-validator *.yaml
+
+validate.redoc:
   stage: validate
   before_script:
     - npx -v
