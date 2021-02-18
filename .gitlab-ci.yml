@@ -28,6 +28,7 @@ validate.redoc:
 
 publish:
   stage: publish
+  image: kramos/alpine-zip
   script:
     - mkdir openapi
     - cp *.yaml openapi
