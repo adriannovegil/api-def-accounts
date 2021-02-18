@@ -27,10 +27,8 @@ validate.redoc:
     - npx @redocly/openapi-cli lint ./spec/*.yaml
 
 publish:
-  stage: publish
-  image: kramos/alpine-zip
+  stage: publish  
   script:
-    - zip -r spec.zip ./spec
     - tar -zcvf spec.tar.gz spec
   artifacts:
     name: "api-spec"
