@@ -6,4 +6,4 @@ before_script:
 validate:
   stage: deploy
   script:
-    - validate . ./json
+    - validate . ./yaml
