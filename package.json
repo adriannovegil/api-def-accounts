@@ -1,0 +1,22 @@
+{
+  "name": "api-def-accounts",
+  "version": "1.0.0",
+  "dependencies": {
+    "@redocly/openapi-cli": "^1.0.0-beta.31"
+  },
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p dist && cp -R ./spec/* ./dist",
+    "redoc-blundle": "redoc-cli bundle ./spec/openapi/*.yaml --output ./docs/index.html",
+    "redoc-reload": "live-server —-watch=docs/ --open=docs/",
+    "redoc-watch": "watch \"npm run redoc-blundle\" ./spec/openapi",
+    "api-doc": "concurrently \"npm run redoc-reload\" \"npm run redoc-watch\"",
+    "clean": "rm -Rf ./spec"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "dredd": "^14.0.0",
+    "live-server": "^1.2.1",
+    "watch": "^1.0.2"
+  }
+}
