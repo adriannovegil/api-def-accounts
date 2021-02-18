@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "build": "mkdir -p dist && cp -R ./spec/* ./dist",
+    "test": "npx @redocly/openapi-cli lint ./spec/openapi/*.yaml",
     "redoc-blundle": "redoc-cli bundle ./spec/openapi/*.yaml --output ./docs/index.html",
     "redoc-reload": "live-server —-watch=docs/ --open=docs/",
     "redoc-watch": "watch \"npm run redoc-blundle\" ./spec/openapi",

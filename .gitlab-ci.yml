@@ -11,6 +11,9 @@ prepare:
   stage: prepare
   script:
     - df -h
+  only:
+  - master
+  - develop
 
 validate.swagger:
   stage: validate
@@ -19,13 +22,19 @@ validate.swagger:
     - swagger-cli -v
   script:
     - validate ./spec/openapi ./yaml
+  only:
+  - master
+  - develop
 
 validate.redoc:
   stage: validate
   before_script:
     - npx -v
   script:
-    - npx @redocly/openapi-cli lint ./spec/openapi/*.yaml
+    - npm run test
+  only:
+  - master
+  - develop
 
 release:
   stage: release
@@ -34,6 +43,9 @@ release:
   script:
     - npm run build
     - tar -zcvf dist.tar.gz dist
+  only:
+  - master
+  - develop
 
 publish:
   stage: publish
@@ -45,6 +57,9 @@ publish:
     paths:
       - dist.tar.gz
     expire_in: 30 days
+  only:
+  - master
+  - develop
 
 pages:
   stage: doc
@@ -57,3 +72,4 @@ pages:
     - public
   only:
   - master
+  - develop
