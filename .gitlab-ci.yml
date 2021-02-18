@@ -29,6 +29,8 @@ validate.redoc:
 
 release:
   stage: release
+  artifacts:
+    untracked: true
   script:
     - tar -zcvf spec.tar.gz spec
 
