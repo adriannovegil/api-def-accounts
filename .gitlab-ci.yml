@@ -30,7 +30,7 @@ publish:
   stage: publish
   script:
     - mkdir openapi
-    - cp *.yml openapi
+    - cp *.yaml openapi
     - zip -r openapi.zip ./openapi
   artifacts:
     name: "viking-mill"
