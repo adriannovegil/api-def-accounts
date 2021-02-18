@@ -24,7 +24,8 @@ validate.openapi:
   before_script:
     - openapi-validator -v
   script:
-    - openapi-validator *.yaml
+    - openapi-validator accountbalances.yaml
+    - openapi-validator accounts.yaml
 
 validate.redoc:
   stage: validate
