@@ -3,10 +3,10 @@ image: node:latest
 stages:
 - prepare
 - validate
-- doc
 - publish
+- doc
 
-prepare.swagger:
+prepare:
   stage: prepare
   script:
     - df -h
@@ -23,10 +23,10 @@ validate.openapi:
   stage: validate
   image: jamescooke/openapi-validator
   before_script:
-    - openapi-validator --version
+    - lint-openapi --version
   script:
-    - openapi-validator accountbalances.yaml
-    - openapi-validator accounts.yaml
+    - lint-openapi accountbalances.yaml
+    - lint-openapi accounts.yaml
 
 validate.redoc:
   stage: validate
