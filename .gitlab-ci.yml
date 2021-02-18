@@ -4,6 +4,7 @@ stages:
 - prepare
 - validate
 - doc
+- publish
 
 prepare.swagger:
   stage: prepare
@@ -22,7 +23,7 @@ validate.openapi:
   stage: validate
   image: jamescooke/openapi-validator
   before_script:
-    - openapi-validator -v
+    - openapi-validator --version
   script:
     - openapi-validator accountbalances.yaml
     - openapi-validator accounts.yaml
@@ -33,6 +34,18 @@ validate.redoc:
     - npx -v
   script:
     - npx @redocly/openapi-cli lint *.yaml
+
+publish:
+  stage: publish
+  script:
+    - mkdir openapi
+    - cp *.yml openapi
+    - zip -r openapi.zip ./openapi
+  artifacts:
+    name: "viking-mill"
+    paths:
+      - ./site/openapi.zip
+    expire_in: 30 days
 
 pages:
   stage: doc
