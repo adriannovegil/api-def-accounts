@@ -1,11 +1,10 @@
-# This template uses node as default image
 image: node:latest
 
 stages:
 - validate
 - doc
 
-validate: swagger
+validate.swagger:
   stage: validate
   image: gkarthics/swagger-validate:0.2.0
   before_script:
@@ -13,7 +12,7 @@ validate: swagger
   script:
     - validate . ./yaml
 
-validate: openapi
+validate.openapi:
   stage: validate
   before_script:
     - npx -v
