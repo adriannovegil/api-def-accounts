@@ -1,9 +1,32 @@
-image: gkarthics/swagger-validate:0.2.0
+# This template uses node as default image
+image: node:latest
 
-before_script:
-  - swagger-cli -v
+stages:
+- validate
+- doc
 
-validate:
-  stage: deploy
+validate: swagger
+  stage: validate
+  image: gkarthics/swagger-validate:0.2.0
+  before_script:
+    - swagger-cli -v
   script:
     - validate . ./yaml
+
+validate: openapi
+  stage: validate
+  before_script:
+    - npx -v
+  script:
+    - npx @redocly/openapi-cli lint path-to-root-file.yaml
+
+pages:
+  stage: doc
+  script:
+  - npm install -g redoc-cli
+  - redoc-cli bundle -o public/index.html *.yaml
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
