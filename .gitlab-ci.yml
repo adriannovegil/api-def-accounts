@@ -17,26 +17,25 @@ validate.swagger:
   before_script:
     - swagger-cli -v
   script:
-    - validate . ./yaml
+    - validate ./spec ./yaml
 
 validate.redoc:
   stage: validate
   before_script:
     - npx -v
   script:
-    - npx @redocly/openapi-cli lint *.yaml
+    - npx @redocly/openapi-cli lint ./spec/*.yaml
 
 publish:
   stage: publish
   image: kramos/alpine-zip
   script:
-    - mkdir openapi
-    - cp *.yaml openapi
-    - zip -r openapi.zip ./openapi
+    - zip -r spec.zip ./spec
+    - tar -zcvf spec.tar.gz spec
   artifacts:
-    name: "viking-mill"
+    name: "api-spec"
     paths:
-      - ./site/openapi.zip
+      - ./site/spec.tar.gz
     expire_in: 30 days
 
 pages:
