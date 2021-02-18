@@ -51,6 +51,7 @@ pages:
   script:
   - npm install --save-dev redoc-cli
   - npm run redoc-blundle
+  - cp ./docs/* public/
   artifacts:
     paths:
     - public
