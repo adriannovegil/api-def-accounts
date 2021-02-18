@@ -1,8 +1,14 @@
 image: node:latest
 
 stages:
+- prepare
 - validate
 - doc
+
+validate.swagger:
+  stage: prepare
+  script:
+    - df -h
 
 validate.swagger:
   stage: validate
@@ -17,7 +23,7 @@ validate.openapi:
   before_script:
     - npx -v
   script:
-    - npx @redocly/openapi-cli lint path-to-root-file.yaml
+    - npx @redocly/openapi-cli lint *.yaml
 
 pages:
   stage: doc
