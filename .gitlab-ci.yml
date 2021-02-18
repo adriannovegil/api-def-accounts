@@ -41,7 +41,7 @@ publish:
   artifacts:
     name: "api-spec"
     paths:
-      - ./site/spec.tar.gz
+      - spec.tar.gz
     expire_in: 30 days
 
 pages:
