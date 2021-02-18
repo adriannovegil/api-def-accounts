@@ -27,7 +27,7 @@ validate.redoc:
     - npx @redocly/openapi-cli lint ./spec/*.yaml
 
 publish:
-  stage: publish  
+  stage: publish
   script:
     - tar -zcvf spec.tar.gz spec
   artifacts:
@@ -40,7 +40,7 @@ pages:
   stage: doc
   script:
   - npm install -g redoc-cli
-  - redoc-cli bundle -o public/index.html *.yaml
+  - redoc-cli bundle -o public/index.html ./spec/*.yaml
   artifacts:
     paths:
     - public
