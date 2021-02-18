@@ -1,0 +1,9 @@
+image: gkarthics/swagger-validate:0.2.0
+
+before_script:
+  - swagger-cli -v
+
+validate:
+  stage: deploy
+  script:
+    - validate . ./json
