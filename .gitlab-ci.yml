@@ -36,6 +36,8 @@ publish:
   stage: publish
   dependencies:
     - release
+  script:
+    - ls -al
   artifacts:
     name: "api-spec"
     paths:
