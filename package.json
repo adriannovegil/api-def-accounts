@@ -11,7 +11,7 @@
     "redoc-reload": "live-server —-watch=docs/ --open=docs/",
     "redoc-watch": "watch \"npm run redoc-blundle\" ./spec/openapi",
     "api-doc": "concurrently \"npm run redoc-reload\" \"npm run redoc-watch\"",
-    "clean": "rm -Rf ./spec"
+    "clean": "rm -Rf ./dist"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
