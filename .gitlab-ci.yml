@@ -3,6 +3,7 @@ image: node:latest
 stages:
 - prepare
 - validate
+- release
 - publish
 - doc
 
@@ -26,10 +27,15 @@ validate.redoc:
   script:
     - npx @redocly/openapi-cli lint ./spec/*.yaml
 
-publish:
-  stage: publish
+release:
+  stage: release
   script:
     - tar -zcvf spec.tar.gz spec
+
+publish:
+  stage: publish
+  dependencies:
+    - release
   artifacts:
     name: "api-spec"
     paths:
